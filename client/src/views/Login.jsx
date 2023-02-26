@@ -49,7 +49,7 @@ export default function Login() {
     window.location.assign('/account');
   };
 
-  async function getAccount() {
+  const getAccount = async () => {
     const accounts = await window.ethereum.request({
       method: 'eth_requestAccounts',
     });
@@ -64,7 +64,7 @@ export default function Login() {
     }
 
     window.location.assign('/account');
-  }
+  };
 
   return (
     <>
