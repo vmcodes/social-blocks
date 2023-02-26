@@ -5,6 +5,7 @@ import {
   Stack,
   Text,
   useColorModeValue,
+  useToast,
 } from '@chakra-ui/react';
 import { Connect, ThemeProvider } from '@did-connect/react';
 import { useState } from 'react';
@@ -22,6 +23,7 @@ if (typeof window.ethereum !== 'undefined') {
 export default function Login() {
   const [open, setOpen] = useState(false);
   const dispatch = useAuthDispatch();
+  const toast = useToast();
 
   const handleClose = () => {
     setOpen(false);
@@ -59,11 +61,17 @@ export default function Login() {
       await createProfile(account);
 
       await login(dispatch, account);
+
+      window.location.assign('/account');
     } catch (e) {
       console.log(e);
+      toast({
+        title: 'Login error!',
+        status: 'error',
+        duration: 2000,
+        isClosable: true,
+      });
     }
-
-    window.location.assign('/account');
   };
 
   return (
