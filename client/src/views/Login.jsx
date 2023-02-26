@@ -98,7 +98,7 @@ export default function Login() {
             fontSize={{ base: 'sm', sm: 'md' }}
             color={useColorModeValue('black', 'white')}
           >
-            Only one Wallet can be used per an account.
+            Only one wallet can be used per an account.
           </Text>
 
           <Stack spacing={6} pt="12px">

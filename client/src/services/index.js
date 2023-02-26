@@ -18,8 +18,8 @@ export const loginUser = async (address) => {
   return (await socialApi.post(`/user`, { address: address })).data;
 };
 
-export const getProfile = async () => {
-  return (await socialApi.get(`/profile`)).data;
+export const getProfile = async (username) => {
+  return (await socialApi.get(`/profile/${username}`)).data;
 };
 
 export const createProfile = async (address) => {
