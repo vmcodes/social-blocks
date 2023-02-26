@@ -2,7 +2,7 @@
 
 ![Social Blocks](logo.png)
 
-## Monorepo for the Social Blocks DApp on ArcBlock
+## Repo for the Social Blocks DApp on ArcBlock
 
 - This project can be deployed on a Blocklet Server and allows for only one user per an instance.
 - Once a user authenticates with DID Wallet, they are the sole owner.
