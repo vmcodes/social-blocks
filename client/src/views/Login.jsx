@@ -14,6 +14,7 @@ import { useAuthDispatch } from '../contexts';
 import { login } from '../contexts/actions';
 import ArcBlock from '../assets/images/arcblock.png';
 import MetaMask from '../assets/images/metamask.png';
+import Footer from '../components/Footer';
 if (typeof window.ethereum !== 'undefined') {
   console.log('MetaMask is installed!');
 }
@@ -158,6 +159,8 @@ export default function Login() {
           </Stack>
         </Stack>
       </Flex>
+
+      <Footer />
 
       <WrappedConnect
         popup

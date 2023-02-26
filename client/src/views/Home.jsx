@@ -2,10 +2,20 @@ import { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { getProfile } from '../services';
 import Hero from '../components/Hero';
-import { Button, Center, Heading, Image, Text, VStack } from '@chakra-ui/react';
+import {
+  Box,
+  Button,
+  Center,
+  Heading,
+  Image,
+  Text,
+  VStack,
+} from '@chakra-ui/react';
 import { QRCodeCanvas } from 'qrcode.react';
 import { Link } from 'react-router-dom';
 import Placeholder from '../assets/images/placeholder.png';
+import Features from '../components/Features';
+import Footer from '../components/Footer';
 
 export default function Home() {
   const [profile, setProfile] = useState(null);
@@ -36,11 +46,16 @@ export default function Home() {
         <title>{profile?.name && `${profile.name} | Social Blocks`}</title>
       </Helmet>
 
-      {profile === false && <Hero />}
+      {profile === false && (
+        <Box minH="120vh">
+          <Hero />
+          <Features />
+        </Box>
+      )}
 
       {profile?.address && (
         <>
-          <VStack className="top-24" minH="120vh">
+          <VStack className="top-24" minH="100vh">
             <Center
               width={{ base: '80%', md: '50%', lg: '30%' }}
               flexDirection="column"
@@ -253,6 +268,8 @@ export default function Home() {
           </VStack>
         </>
       )}
+
+      <Footer />
     </>
   );
 }

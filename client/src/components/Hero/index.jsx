@@ -1,13 +1,4 @@
-import {
-  Box,
-  Heading,
-  Container,
-  Text,
-  Button,
-  Stack,
-  VStack,
-} from '@chakra-ui/react';
-import { QRCodeCanvas } from 'qrcode.react';
+import { Box, Heading, Container, Text, Button, Stack } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 
 export default function Hero() {
@@ -30,9 +21,6 @@ export default function Hero() {
             Social Blocks!
           </Text>
         </Heading>
-        <Text fontSize="lg">
-          Please connect your wallet to create your account.
-        </Text>
         <Stack
           direction={'column'}
           spacing={3}
@@ -55,22 +43,10 @@ export default function Hero() {
             }}
             w="200px"
           >
-            Get Started{' '}
+            Get Started
             <i style={{ marginLeft: '12px' }} className="fas fa-sign-in"></i>
           </Button>
         </Stack>
-
-        <VStack
-          spacing={3}
-          align={'center'}
-          alignSelf={'center'}
-          position={'relative'}
-          maxW="200px"
-          mx="auto"
-          className="qrcode"
-        >
-          <QRCodeCanvas size="200" value="https://www.socialblocks.io" />,
-        </VStack>
       </Stack>
     </Container>
   );

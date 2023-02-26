@@ -17,6 +17,7 @@ import { useAuthDispatch } from '../contexts';
 import { getProfile, updateProfile } from '../services';
 import { logout } from '../contexts/actions';
 import FileUpload from '../components/FileUpload';
+import Footer from '../components/Footer';
 
 export default function Account() {
   const [profile, setProfile] = useState(null);
@@ -322,6 +323,8 @@ export default function Account() {
           </Box>
         </Stack>
       </Flex>
+
+      <Footer />
     </>
   );
 }
