@@ -6,7 +6,6 @@ import './assets/css/styles.css';
 import ColoModeSwitch from './components/ColoModeSwitch';
 import { useAuthState } from './contexts';
 const Home = lazy(() => import('./views/Home'));
-const Profile = lazy(() => import('./views/Profile'));
 const Login = lazy(() => import('./views/Login'));
 const Account = lazy(() => import('./views/Account'));
 
@@ -19,8 +18,6 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Home />} exact />
-
-            <Route path="/:username" element={<Profile />} />
 
             <Route path="/login" element={<Login />} exact />
 

@@ -1,0 +1,261 @@
+#sidebarScrollRemove::-webkit-scrollbar {
+  display: none;
+}
+
+#sidebarScrollRemove {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+/* Full Calendar */
+a.fc-daygrid-day-number {
+  width: 100%;
+  text-align: center;
+}
+a.fc-daygrid-day-number {
+  width: 100%;
+  text-align: center;
+}
+a.fc-daygrid-day-number {
+  width: 100%;
+  text-align: center;
+}
+div.fc-daygrid-event-harness {
+  top: unset;
+}
+.fc-daygrid-event-harness .fc-daygrid-event-harness-abs {
+  top: 0px;
+  bottom: unset;
+}
+.fc .fc-scrollgrid-section-header > *,
+.fc .fc-scrollgrid-section-footer > * {
+  border-right: 0px !important;
+}
+.fc-theme-standard .fc-scrollgrid {
+  border: 0px solid transparent !important;
+}
+
+.fc-col-header-cell.fc-day.fc-day-mon {
+  border-right: 0px;
+  border-left: 0px;
+}
+
+.fc-col-header-cell.fc-day.fc-day-tue {
+  border-left: 0px;
+  border-right: 0px;
+}
+.fc-col-header-cell.fc-day.fc-day-wed {
+  border-right: 0px;
+  border-left: 0px;
+}
+
+.fc-col-header-cell.fc-day.fc-day-thu {
+  border-left: 0px;
+  border-right: 0px;
+}
+.fc-col-header-cell.fc-day.fc-day-fri {
+  border-right: 0px;
+  border-left: 0px;
+}
+
+.fc-col-header-cell.fc-day.fc-day-sat {
+  border-left: 0px;
+  border-right: 0px;
+}
+
+.fc-col-header-cell.fc-day.fc-day-sun {
+  border-left: 0px;
+  border-right: 0px;
+}
+.fc-scrollgrid.fc-scrollgrid-liquid > td {
+  border: 0px;
+}
+
+.fc .fc-scrollgrid-section > td {
+  border: 0;
+}
+
+/* React Kanban */
+body.chakra-ui-light .react-kanban-column {
+  background-color: #edf2f7; /* Gray/Gray-100 */
+  border-radius: 15px;
+}
+body.chakra-ui-dark .react-kanban-column {
+  background-color: #2d3748; /* Gray/Gray-100 */
+  border-radius: 15px;
+}
+.react-kanban-column {
+  width: 500px;
+}
+.react-kanban-card-adder-form {
+  width: 100%;
+  background-color: red;
+  border-radius: 15px;
+}
+.react-kanban-card-adder-button {
+  display: none;
+  background-color: red !important;
+  border-radius: 15px;
+}
+
+/* Text Editor */
+
+body.chakra-ui-light .ql-toolbar.ql-snow {
+  border-color: rgb(226, 232, 240); /* Gray/Gray-100 */
+}
+
+body.chakra-ui-dark .ql-toolbar.ql-snow {
+  border-color: rgba(255, 255, 255, 0.16); /* Gray/Gray-100 */
+}
+
+body.chakra-ui-light .ql-container.ql-snow {
+  border-color: rgb(226, 232, 240); /* Gray/Gray-100 */
+}
+
+body.chakra-ui-dark .ql-container.ql-snow {
+  border-color: rgba(255, 255, 255, 0.16); /* Gray/Gray-100 */
+}
+
+body.chakra-ui-light .ql-snow .ql-picker-label {
+  color: rgb(26, 32, 44) !important;
+}
+body.chakra-ui-dark .ql-snow .ql-picker-label {
+  color: rgba(255, 255, 255, 0.92) !important;
+}
+
+body.chakra-ui-light .ql-snow .ql-stroke {
+  stroke: rgb(26, 32, 44) !important;
+}
+body.chakra-ui-dark .ql-snow .ql-stroke {
+  stroke: rgba(255, 255, 255, 0.92) !important;
+}
+
+body.chakra-ui-light .ql-snow .ql-fill {
+  fill: rgb(26, 32, 44) !important;
+}
+body.chakra-ui-dark .ql-snow .ql-fill {
+  fill: rgba(255, 255, 255, 0.92) !important;
+}
+
+.ql-snow .ql-picker-label:hover {
+  color: rgb(79, 209, 197) !important;
+}
+
+.ql-snow .ql-stroke:hover {
+  stroke: rgb(79, 209, 197) !important;
+}
+
+.ql-snow .ql-fill:hover {
+  fill: rgb(79, 209, 197) !important;
+}
+
+.ql-container.ql-snow {
+  min-height: 88px !important;
+  border-bottom-left-radius: 15px !important;
+  border-bottom-right-radius: 15px !important;
+}
+
+/* Draftjs editor */
+.rdw-image-modal-upload-option-label {
+  padding-top: 50px !important;
+  padding-bottom: 50px !important;
+}
+
+.rdw-image-modal {
+  width: 350px !important;
+}
+
+.rdw-editor-toolbar,
+.rdw-dropdown-wrapper,
+.rdw-dropdown-optionwrapper,
+.rdw-dropdownoption-active,
+.rdw-dropdownoption-highlighted,
+.rdw-colorpicker-modal,
+.rdw-link-modal,
+.rdw-embedded-modal,
+.rdw-link-modal-btn,
+.rdw-embedded-modal-btn,
+.rdw-emoji-modal,
+.rdw-image-modal,
+.rdw-image-modal-btn,
+.rdw-image-alignment-options-popup,
+.rdw-image-alignment-option {
+  height: unset !important;
+}
+
+.rdw-dark .rdw-editor-toolbar,
+.rdw-dark .rdw-dropdown-wrapper,
+.rdw-dark .rdw-dropdown-optionwrapper,
+.rdw-dark .rdw-dropdownoption-active,
+.rdw-dark .rdw-dropdownoption-highlighted,
+.rdw-dark .rdw-colorpicker-modal,
+.rdw-dark .rdw-link-modal,
+.rdw-dark .rdw-embedded-modal,
+.rdw-dark .rdw-link-modal-btn,
+.rdw-dark .rdw-embedded-modal-btn,
+.rdw-dark .rdw-emoji-modal,
+.rdw-dark .rdw-image-modal,
+.rdw-dark .rdw-image-modal-btn,
+.rdw-dark .rdw-image-alignment-options-popup,
+.rdw-dark .rdw-image-alignment-option {
+  background: var(--chakra-colors-chakra-body-bg) !important;
+  border-color: var(--chakra-colors-chakra-border-color) !important;
+}
+
+.rdw-dark .rdw-dropdownoption-active,
+.rdw-dark .rdw-dropdownoption-highlighted {
+  filter: brightness(1.5) !important;
+}
+
+.rdw-emoji-modal {
+  height: 180px !important;
+}
+
+.rdw-dark .rdw-link-modal-btn[disabled],
+.rdw-dark .rdw-embedded-modal-btn[disabled],
+.rdw-dark .rdw-image-modal-btn[disabled] {
+  filter: brightness(0.5) !important;
+}
+
+.rdw-option-wrapper,
+.rdw-dropdown-wrapper {
+  height: 30px !important;
+  color: #000 !important;
+}
+
+.rdw-image-modal-btn {
+  color: #38b2ac !important;
+}
+
+.rdw-option-wrapper {
+  min-width: 35px !important;
+}
+
+.rdw-fontsize-dropdown {
+  min-width: 50px !important;
+}
+
+.rdw-editor-main {
+  min-height: 300px !important;
+  max-height: 600px !important;
+}
+
+.react-datepicker__day--selected {
+  background-color: #38b2ac !important;
+}
+
+.react-datepicker-popper {
+  z-index: 10 !important;
+}
+
+.qrcode canvas {
+  max-width: 200px !important;
+  max-height: 200px !important;
+}
+
+.right-12 {
+  margin-right: 12px;
+}
+
+.top-24 {
+  margin-top: 24px;
+}
