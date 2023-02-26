@@ -15,7 +15,7 @@
 
 ## Using Blocklet Server and Blocklet CLI
 
-```bash
+```shell
 yarn global add @blocklet/cli
 git clone https://github.com/vmcodes/social-blocks
 cd social-blocks
@@ -30,34 +30,29 @@ blocklet dev
 
 - Install all dependencies for the server and client.
 
-```bash
+```shell
 yarn install
 ```
 
 - Build entire project.
 
-```bash
+```shell
 yarn build
 ```
 
 - Run backend and serve frontend build folder.
 
-```bash
+```shell
 yarn start
 ```
 
 ## Deploying on Blocklet Server
 
-```bash
+```shell
 yarn build
 yarn bundle
 yarn deploy
 ```
-
-## Dark Mode
-
-- To enable dark mode, locate `client/src/index.js`.
-- Update the styles to: `import './assets/dark.css'` and `algorithm: theme.darkAlgorithm`.
 
 ## License
 
