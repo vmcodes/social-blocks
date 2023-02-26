@@ -1,0 +1,47 @@
+name: social-blocks
+title: Social Blocks
+description: Decentralized Social Links
+version: 2.0.5
+group: dapp
+main: ./dist/index.js
+author:
+  name: vmcodes
+scripts:
+  dev: npm run start
+specVersion: 1.2.7
+files:
+  - blocklet.md
+  - screenshots
+  - build
+  - dist
+  - database
+logo: logo.png
+interfaces:
+  - type: web
+    name: publicUrl
+    path: /
+    prefix: '*'
+    port: BLOCKLET_PORT
+    protocol: http
+did: z8iZw7BRcM9d5HKRHt2nzR3RyGmYRkua6hbe4
+community: ''
+documentation: 'https://github.com/vmcodes/social-blocks#readme'
+homepage: 'https://www.socialblocks.io'
+license: 'ISC'
+payment:
+  price: []
+  share: []
+timeout:
+  start: 60
+requirements:
+  server: '>=1.8.0'
+  os: '*'
+  cpu: '*'
+  nodejs: '>=18.0.0'
+capabilities:
+  clusterMode: false
+  component: true
+screenshots:
+  - blocks.png
+  - dark-mode.png
+components: []
