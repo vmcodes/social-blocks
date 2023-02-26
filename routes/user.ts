@@ -1,7 +1,7 @@
-import { User } from '../entities/user.entity';
-import { myDataSource } from '../data-source';
+import * as express from 'express';
 import { getToken } from '../utils';
-const express = require('express');
+const model = require('../models');
+const User = model.user;
 const app = express.Router();
 
 // login user
@@ -9,31 +9,23 @@ app.post('/', async function (req, res) {
   try {
     const request = req.body;
 
-    const user = await myDataSource
-      .getRepository(User)
-      .findOneBy({ address: request.address });
+    const user = await User.findOne({ address: request.address });
 
-    const rows = await myDataSource.getRepository(User).count({ take: 1 });
-
-    if (user?._id && rows < 2) {
+    if (user?.address === request.address) {
       const tokens = await getToken(user.address);
 
       return res.send(tokens);
     }
 
-    if (rows < 1) {
-      const newUser = myDataSource
-        .getRepository(User)
-        .create({ address: request.address });
+    const newUser = new User({
+      address: request.address,
+    });
 
-      await myDataSource.getRepository(User).save(newUser);
+    await newUser.save();
 
-      const tokens = await getToken(request.address);
+    const tokens = await getToken(request.address);
 
-      return res.send(tokens);
-    }
-
-    return res.sendStatus(403);
+    return res.send(tokens);
   } catch (e) {
     console.log(e);
     return res.sendStatus(500);

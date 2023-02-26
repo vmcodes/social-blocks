@@ -1,15 +1,17 @@
-import { Profile } from '../entities/profile.entity';
-import { myDataSource } from '../data-source';
+import * as express from 'express';
 import { verifyToken } from '../utils';
-const express = require('express');
+const model = require('../models');
+const Profile = model.profile;
 const app = express.Router();
 
 // get profile
 app.get('/', async function (req, res) {
   try {
-    const results = await myDataSource.getRepository(Profile).find();
+    const request = req.params;
 
-    return res.json(results[0]);
+    const profile = await Profile.findOne({ username: request });
+
+    return res.json(profile);
   } catch (e) {
     console.log(e);
     return res.sendStatus(500);
@@ -21,16 +23,13 @@ app.put('/', async function (req, res) {
   try {
     const request = req.body;
 
-    const rows = await myDataSource.getRepository(Profile).count({ take: 1 });
+    const newProfile = new Profile({
+      ...request,
+    });
 
-    if (rows < 1) {
-      const profile = myDataSource.getRepository(Profile).create(request);
-      await myDataSource.getRepository(Profile).save(profile);
+    await newProfile.save();
 
-      return res.sendStatus(201);
-    }
-
-    return res.sendStatus(200);
+    return res.sendStatus(201);
   } catch (e) {
     console.log(e);
     return res.sendStatus(500);
@@ -44,12 +43,7 @@ app.post('/', async function (req, res) {
     const request = req.body;
 
     if (verified === request.address) {
-      const profile = await myDataSource.getRepository(Profile).findOneBy({
-        address: request.address,
-      });
-
-      myDataSource.getRepository(Profile).merge(profile, request);
-      await myDataSource.getRepository(Profile).save(profile);
+      await Profile.updateOne({ ...request });
 
       return res.sendStatus(201);
     }

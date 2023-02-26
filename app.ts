@@ -1,19 +1,29 @@
 import * as express from 'express';
-import { myDataSource } from './data-source';
+const db = require('./models');
 const cors = require('cors');
 const indexRouter = require('./routes/index');
 const userRouter = require('./routes/user');
 const profileRouter = require('./routes/profile');
 
+async function mongoStart() {
+  db.mongoose.set('strictQuery', false);
+
+  await db.mongoose
+    .connect(db.url, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    })
+    .then(() => {
+      console.log('connected to mongo');
+    })
+    .catch((err) => {
+      console.log('error connecting to the database:', err);
+      process.exit();
+    });
+}
+
 // establish database connection
-myDataSource
-  .initialize()
-  .then(() => {
-    console.log('Data Source has been initialized!');
-  })
-  .catch((err) => {
-    console.error('Error during Data Source initialization:', err);
-  });
+mongoStart();
 
 // create and setup express app
 const app = express();
