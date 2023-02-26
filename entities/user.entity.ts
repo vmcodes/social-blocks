@@ -6,7 +6,7 @@ export class User {
   _id: string;
 
   @Column({ default: null })
-  did: string | null;
+  address: string | null;
 
   @Column({ default: new Date().toISOString() })
   createdAt: string;

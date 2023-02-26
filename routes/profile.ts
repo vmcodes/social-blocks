@@ -43,9 +43,9 @@ app.post('/', async function (req, res) {
     const verified = await verifyToken(req);
     const request = req.body;
 
-    if (verified === request.did) {
+    if (verified === request.address) {
       const profile = await myDataSource.getRepository(Profile).findOneBy({
-        did: request.did,
+        address: request.address,
       });
 
       myDataSource.getRepository(Profile).merge(profile, request);

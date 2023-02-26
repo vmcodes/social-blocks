@@ -14,16 +14,16 @@ export const socialApi = axios.create({
   },
 });
 
-export const loginUser = async (did) => {
-  return (await socialApi.post(`/user`, { did: did })).data;
+export const loginUser = async (address) => {
+  return (await socialApi.post(`/user`, { address: address })).data;
 };
 
 export const getProfile = async () => {
   return (await socialApi.get(`/profile`)).data;
 };
 
-export const createProfile = async (did) => {
-  return (await socialApi.put(`/profile`, { did: did })).data;
+export const createProfile = async (address) => {
+  return (await socialApi.put(`/profile`, { address: address })).data;
 };
 
 export const updateProfile = async (profile) => {

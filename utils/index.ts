@@ -1,10 +1,10 @@
 const jwt = require('jsonwebtoken');
 
-export async function getToken(did: string) {
+export async function getToken(address: string) {
   const [accessToken] = await Promise.all([
     jwt.sign(
       {
-        sub: did,
+        sub: address,
       },
       'EZR<;1Jn4e]h^)1Fjo%7',
       { expiresIn: '1d' },

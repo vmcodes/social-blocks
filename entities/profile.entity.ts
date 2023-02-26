@@ -6,7 +6,7 @@ export class Profile {
   _id: string;
 
   @Column({ default: null })
-  did: string | null;
+  address: string | null;
 
   @Column({ default: null })
   ipfsHash: string | null;

@@ -11,12 +11,12 @@ app.post('/', async function (req, res) {
 
     const user = await myDataSource
       .getRepository(User)
-      .findOneBy({ did: request.did });
+      .findOneBy({ address: request.address });
 
     const rows = await myDataSource.getRepository(User).count({ take: 1 });
 
     if (user?._id && rows < 2) {
-      const tokens = await getToken(user.did);
+      const tokens = await getToken(user.address);
 
       return res.send(tokens);
     }
@@ -24,11 +24,11 @@ app.post('/', async function (req, res) {
     if (rows < 1) {
       const newUser = myDataSource
         .getRepository(User)
-        .create({ did: request.did });
+        .create({ address: request.address });
 
       await myDataSource.getRepository(User).save(newUser);
 
-      const tokens = await getToken(request.did);
+      const tokens = await getToken(request.address);
 
       return res.send(tokens);
     }

@@ -13,7 +13,7 @@ export default function Home() {
   const fetchProfile = async () => {
     await getProfile()
       .then((response) => {
-        if (response?.did) {
+        if (response?.address) {
           setProfile(response);
         } else {
           setProfile(false);
@@ -38,7 +38,7 @@ export default function Home() {
 
       {profile === false && <Hero />}
 
-      {profile?.did && (
+      {profile?.address && (
         <>
           <VStack className="top-24" minH="120vh">
             <Center

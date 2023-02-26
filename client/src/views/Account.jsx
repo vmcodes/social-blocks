@@ -26,7 +26,7 @@ export default function Account() {
   const fetchProfile = async () => {
     await getProfile()
       .then((response) => {
-        if (response?.did) {
+        if (response?.address) {
           setProfile(response);
         } else {
           setProfile(false);
@@ -46,7 +46,7 @@ export default function Account() {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    if (profile?.did) {
+    if (profile?.address) {
       try {
         await updateProfile({
           ...profile,
