@@ -17,7 +17,7 @@ services:
     image: social-blocks
     restart: always
     ports:
-      - '3000:3000'
+      - '8000:8000'
     logging:
       driver: 'json-file'
       options:

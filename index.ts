@@ -12,7 +12,7 @@ require('pug');
  */
 
 const port = normalizePort(
-  process.env.BLOCKLET_PORT || process.env.PORT || '3000',
+  process.env.BLOCKLET_PORT || process.env.PORT || '8000',
 );
 blocklet.set('port', port);
 

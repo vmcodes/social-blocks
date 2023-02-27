@@ -7,7 +7,7 @@
   "scripts": {
     "dev:install": "cd client && yarn",
     "dev:client": "cd client && yarn start",
-    "prod:build": "tsc && cd client && yarn build",
+    "prod:build": "tsc && cd client && yarn build && mv build ../",
     "start": "node dist/index.js",
     "build": "tsc",
     "clean": "rm -rf dist && rm -rf build",

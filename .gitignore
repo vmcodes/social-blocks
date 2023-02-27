@@ -13,8 +13,6 @@
 /dist
 .blocklet
 .blocklet-server
-.ignore
-.landing
 
 # misc
 .DS_Store
