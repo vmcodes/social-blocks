@@ -4,6 +4,7 @@ const cors = require('cors');
 const indexRouter = require('./routes/index');
 const userRouter = require('./routes/user');
 const profileRouter = require('./routes/profile');
+const uploadRouter = require('./routes/upload');
 
 async function mongoStart() {
   db.mongoose.set('strictQuery', false);
@@ -37,6 +38,7 @@ app.use(express.static('build'));
 app.use('/', indexRouter);
 app.use('/user', userRouter);
 app.use('/profile', profileRouter);
+app.use('/upload', uploadRouter);
 
 app.get('*', function (req, res, next) {
   res.sendFile('build/index.html', { root: '.' });

@@ -7,7 +7,7 @@
   "scripts": {
     "dev:install": "cd client && yarn",
     "dev:client": "cd client && yarn start",
-    "prod:build": "tsc && cd client && yarn build && mv build ../",
+    "prod:build": "tsc && cd client && yarn build",
     "start": "node dist/index.js",
     "build": "tsc",
     "clean": "rm -rf dist && rm -rf build",
@@ -15,6 +15,7 @@
     "deploy": "blocklet deploy .blocklet/bundle"
   },
   "dependencies": {
+    "axios": "^1.3.4",
     "better-sqlite3": "^8.0.1",
     "cors": "^2.8.5",
     "debug": "^4.3.4",
@@ -24,6 +25,7 @@
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^6.10.0",
     "morgan": "^1.10.0",
+    "multer": "^1.4.5-lts.1",
     "pug": "^3.0.2",
     "reflect-metadata": "^0.1.13"
   },
