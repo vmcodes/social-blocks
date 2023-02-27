@@ -1,0 +1,4 @@
+node_modules
+.blocket
+.blocket-server
+.env

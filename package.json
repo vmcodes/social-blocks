@@ -5,9 +5,11 @@
   "license": "ISC",
   "description": "Decentralized Social Links",
   "scripts": {
-    "postinstall": "cd client && yarn",
+    "dev:install": "cd client && yarn",
+    "dev:client": "cd client && yarn start",
+    "prod:build": "tsc && cd client && yarn build",
     "start": "node dist/index.js",
-    "build": "yarn clean && tsc && cd client && yarn build",
+    "build": "tsc",
     "clean": "rm -rf dist && rm -rf build",
     "bundle": "blocklet bundle --zip --create-release",
     "deploy": "blocklet deploy .blocklet/bundle"

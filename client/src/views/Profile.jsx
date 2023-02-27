@@ -41,7 +41,7 @@ export default function Profile() {
 
       {profile?.address && (
         <>
-          <VStack minH="100vh">
+          <VStack minH="120vh">
             <Center
               width={{ base: '80%', md: '50%', lg: '30%' }}
               flexDirection="column"

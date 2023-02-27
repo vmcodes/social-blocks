@@ -131,7 +131,7 @@ export default function Account() {
                 </FormLabel>
 
                 <InputGroup>
-                  <InputLeftAddon children="https://socialblocks.io/" />
+                  <InputLeftAddon children="socialblocks.io/" />
                   <Input
                     type="text"
                     placeholder="Link"

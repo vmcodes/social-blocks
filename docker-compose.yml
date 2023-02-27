@@ -1,0 +1,25 @@
+version: '3.9'
+services:
+  mongo:
+    image: mongo:latest
+    restart: always
+    ports:
+      - '27017:27017'
+    logging:
+      driver: 'json-file'
+      options:
+        max-file: '5'
+        max-size: '10m'
+  api:
+    depends_on:
+      - 'mongo'
+    build: .
+    image: social-blocks
+    restart: always
+    ports:
+      - '3000:3000'
+    logging:
+      driver: 'json-file'
+      options:
+        max-file: '5'
+        max-size: '10m'

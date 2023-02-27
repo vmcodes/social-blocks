@@ -2,7 +2,7 @@ import { Button, Image, useColorMode } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 import Logo from '../../assets/images/logo.png';
 
-export default function ColoModeSwitch() {
+export default function Header() {
   // Chakra Color Mode
   const { colorMode, toggleColorMode } = useColorMode();
 
@@ -13,7 +13,7 @@ export default function ColoModeSwitch() {
         to="/"
         bg="transparent"
         position="absolute"
-        left={'0px'}
+        left={'10px'}
         top="25px"
         _hover={{ background: 'transparent', opacity: 0.8 }}
       >
@@ -28,7 +28,7 @@ export default function ColoModeSwitch() {
           bg: 'green.500',
         }}
         position="absolute"
-        right={'15px'}
+        right={'30px'}
         top="15px"
         borderRadius="50px"
         boxShadow="3xl"

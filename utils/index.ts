@@ -1,4 +1,6 @@
+require('dotenv').config();
 const jwt = require('jsonwebtoken');
+const jwtSecret = process.env.JWT_SECRET ? process.env.JWT_SECRET : 'secret';
 
 export async function getToken(address: string) {
   const [accessToken] = await Promise.all([
@@ -6,7 +8,7 @@ export async function getToken(address: string) {
       {
         sub: address,
       },
-      'EZR<;1Jn4e]h^)1Fjo%7',
+      jwtSecret,
       { expiresIn: '1d' },
     ),
   ]);
@@ -24,7 +26,7 @@ export async function verifyToken(req) {
       return false;
     }
 
-    const verified = jwt.verify(token, 'EZR<;1Jn4e]h^)1Fjo%7');
+    const verified = jwt.verify(token, jwtSecret);
 
     if (verified) {
       return verified.sub;
