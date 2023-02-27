@@ -5,7 +5,9 @@ import {
   Stack,
   Text,
   useColorModeValue,
+  chakra,
 } from '@chakra-ui/react';
+import { Link } from 'react-router-dom';
 import Logo from '../../assets/images/logo.png';
 
 export default function Footer() {
@@ -23,8 +25,27 @@ export default function Footer() {
         justify={{ base: 'center', md: 'space-between' }}
         align={{ base: 'center', md: 'center' }}
       >
-        <Image src={Logo} alt="logo" height="60px" borderRadius="50%" />
-        <Text>© 2023 Social Blocks. All rights reserved</Text>
+        <Link to="/">
+          <Image
+            src={Logo}
+            alt="logo"
+            height="60px"
+            borderRadius="50%"
+            _hover={{ background: 'transparent', opacity: 0.8 }}
+          />
+        </Link>
+
+        <Text>
+          © 2023{' '}
+          <chakra.span
+            as={Link}
+            to="/"
+            color="green.400"
+            _hover={{ textDecoration: 'underline' }}
+          >
+            Social Blocks
+          </chakra.span>
+        </Text>
         <Stack direction={'row'} spacing={6}>
           <a
             href="https://nowpayments.io/donation?api_key=9YJ1KW7-Z88MTZD-G188HA6-7GKANVH"

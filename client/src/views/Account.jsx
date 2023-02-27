@@ -10,44 +10,51 @@ import {
   Text,
   useColorModeValue,
   VStack,
+  InputGroup,
+  InputLeftAddon,
 } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import { useAuthDispatch } from '../contexts';
-import { getProfile, updateProfile } from '../services';
+import { getAccount, updateProfile } from '../services';
 import { logout } from '../contexts/actions';
 import FileUpload from '../components/FileUpload';
-import Footer from '../components/Footer';
+import { slugify } from '../utils';
 
 export default function Account() {
   const [profile, setProfile] = useState(null);
   const [hash, setHash] = useState(null);
   const dispatch = useAuthDispatch();
+  const { address } = useParams();
 
   const fetchProfile = async () => {
-    await getProfile()
+    await getAccount(address)
       .then((response) => {
-        if (response?.address) {
+        if (response?.address === address) {
           setProfile(response);
         } else {
           setProfile(false);
+          window.location.assign('/');
         }
       })
-      .catch((err) => {
+      .catch(() => {
         setProfile(false);
+        window.location.assign('/');
       });
   };
 
   useEffect(() => {
-    if (profile === null) {
+    if (profile === null && address) {
       fetchProfile();
     }
-  }, [profile]);
+    //eslint-disable-next-line
+  }, [profile, address]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    if (profile?.address) {
+    if (address) {
       try {
         await updateProfile({
           ...profile,
@@ -56,7 +63,7 @@ export default function Account() {
 
         await logout(dispatch);
 
-        window.location.assign('/');
+        window.location.assign(`/${profile.username}`);
       } catch {
         console.log('user does not exist');
       }
@@ -107,15 +114,33 @@ export default function Account() {
                 <Input
                   type="text"
                   placeholder="Username"
-                  defaultValue={profile?.name}
-                  value={profile?.name}
+                  defaultValue={profile?.username}
+                  value={profile?.username}
                   onChange={(e) =>
                     setProfile((prevState) => ({
                       ...prevState,
-                      name: e.target.value,
+                      username: e.target.value,
                     }))
                   }
                 />
+              </FormControl>
+
+              <FormControl isReadOnly id="slug">
+                <FormLabel>
+                  <i className="fas fa-link right-12"></i> Link
+                </FormLabel>
+
+                <InputGroup>
+                  <InputLeftAddon children="https://socialblocks.io/" />
+                  <Input
+                    type="text"
+                    placeholder="Link"
+                    defaultValue={
+                      profile?.username && slugify(profile.username)
+                    }
+                    value={profile?.username && slugify(profile.username)}
+                  />
+                </InputGroup>
               </FormControl>
 
               <FormControl isRequired id="location">
@@ -323,8 +348,6 @@ export default function Account() {
           </Box>
         </Stack>
       </Flex>
-
-      <Footer />
     </>
   );
 }

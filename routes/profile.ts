@@ -4,10 +4,24 @@ const model = require('../models');
 const Profile = model.profile;
 const app = express.Router();
 
-// get profile
-app.get('/', async function (req, res) {
+// get account
+app.post('/', async function (req, res) {
   try {
-    const request = req.params;
+    const request = req.body;
+
+    const profile = await Profile.findOne({ address: request.address });
+
+    return res.json(profile);
+  } catch (e) {
+    console.log(e);
+    return res.sendStatus(500);
+  }
+});
+
+// get profile
+app.get('/:username', async function (req, res) {
+  try {
+    const request = req.params['username'];
 
     const profile = await Profile.findOne({ username: request });
 
@@ -23,6 +37,12 @@ app.put('/', async function (req, res) {
   try {
     const request = req.body;
 
+    const profile = await Profile.findOne({ address: request.address });
+
+    if (profile?.address === request.address) {
+      return res.sendStatus(200);
+    }
+
     const newProfile = new Profile({
       ...request,
     });
@@ -37,7 +57,7 @@ app.put('/', async function (req, res) {
 });
 
 // update profile
-app.post('/', async function (req, res) {
+app.patch('/', async function (req, res) {
   try {
     const verified = await verifyToken(req);
     const request = req.body;

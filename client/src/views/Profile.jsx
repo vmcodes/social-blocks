@@ -8,7 +8,6 @@ import { useParams } from 'react-router-dom';
 
 export default function Profile() {
   const { username } = useParams();
-
   const [profile, setProfile] = useState(null);
 
   const fetchProfile = async () => {
@@ -35,15 +34,18 @@ export default function Profile() {
   return (
     <>
       <Helmet>
-        <title>{profile?.name && `${profile.name} | Social Blocks`}</title>
+        <title>
+          {profile?.username && `${profile.username} | Social Blocks`}
+        </title>
       </Helmet>
 
       {profile?.address && (
         <>
-          <VStack className="top-24" minH="100vh">
+          <VStack minH="100vh">
             <Center
               width={{ base: '80%', md: '50%', lg: '30%' }}
               flexDirection="column"
+              marginTop="24px"
             >
               {profile?.ipfsHash && (
                 <Image
