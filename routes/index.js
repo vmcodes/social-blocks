@@ -10,7 +10,7 @@ app.get('/login', function (req, res, next) {
   res.sendFile('build/index.html', { root: '.' });
 });
 
-app.get('/account', function (req, res, next) {
+app.get('/account/:address', function (req, res, next) {
   res.sendFile('build/index.html', { root: '.' });
 });
 

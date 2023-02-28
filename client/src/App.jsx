@@ -24,13 +24,13 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} exact />
 
-            <Route path="/:slug" element={<Profile />} />
-
             <Route path="/login" element={<Login />} exact />
 
             {user.authenticated && (
               <Route path="/account/:address" element={<Account />} />
             )}
+
+            <Route path="/:slug" element={<Profile />} />
 
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
