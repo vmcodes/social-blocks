@@ -46,19 +46,6 @@ export default function Footer() {
             Social Blocks
           </chakra.span>
         </Text>
-        <Stack direction={'row'} spacing={6}>
-          <a
-            href="https://nowpayments.io/donation?api_key=9YJ1KW7-Z88MTZD-G188HA6-7GKANVH"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <Image
-              src="https://nowpayments.io/images/embeds/donation-button-black.svg"
-              alt="Crypto donation button by NOWPayments"
-              height="60px"
-            />
-          </a>
-        </Stack>
       </Container>
     </Box>
   );

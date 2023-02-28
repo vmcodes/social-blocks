@@ -6,6 +6,7 @@ import './assets/css/styles.css';
 import Header from './components/Header';
 import { useAuthState } from './contexts';
 import Footer from './components/Footer';
+import BackToTop from './components/BackToTop/BackToTop';
 const Home = lazy(() => import('./views/Home'));
 const Profile = lazy(() => import('./views/Profile'));
 const Login = lazy(() => import('./views/Login'));
@@ -35,6 +36,7 @@ function App() {
           </Routes>
 
           <Footer />
+          <BackToTop />
         </BrowserRouter>
       </Suspense>
     </ChakraProvider>
