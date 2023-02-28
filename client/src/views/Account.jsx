@@ -33,6 +33,7 @@ export default function Account() {
       .then((response) => {
         if (response?.address === address) {
           setProfile(response);
+          setHash(response?.ipfsHash);
         } else {
           setProfile(false);
           window.location.assign('/');
@@ -103,7 +104,7 @@ export default function Account() {
               onSubmit={(e) => handleSubmit(e)}
             >
               <VStack id="photo" textAlign="center" mx="auto" mb="12px">
-                <FileUpload setHash={setHash} hash={profile?.ipfsHash} />
+                <FileUpload setHash={setHash} hash={hash} />
               </VStack>
 
               <FormControl isRequired id="username">

@@ -36,7 +36,7 @@ requirements:
   cpu: '*'
   nodejs: '>=18.0.0'
 capabilities:
-  clusterMode: true
+  clusterMode: false
   component: false
 screenshots: []
 components: []

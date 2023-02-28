@@ -14,6 +14,14 @@ export const socialApi = axios.create({
   },
 });
 
+export const socialUpload = axios.create({
+  baseURL: API_URL,
+  headers: {
+    'content-type': 'multipart/form-data',
+    authorization: accessToken ? `Bearer ${accessToken}` : '',
+  },
+});
+
 export const loginUser = async (address) => {
   return (await socialApi.post(`/user`, { address: address })).data;
 };
@@ -32,4 +40,8 @@ export const createProfile = async (address) => {
 
 export const updateProfile = async (profile) => {
   return (await socialApi.patch(`/profile`, profile)).data;
+};
+
+export const fileUpload = async (upload) => {
+  return (await socialUpload.post('/upload', upload)).data;
 };

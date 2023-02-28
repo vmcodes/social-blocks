@@ -4,18 +4,29 @@ const axios = require('axios');
 const fs = require('fs');
 const path = require('path');
 const multer = require('multer');
-const upload = multer({ dest: path.join(__dirname, `../temp`) });
+const FormData = require('form-data');
 const pinataToken = process.env.PINATA_JWT ? process.env.PINATA_JWT : '';
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, path.join(__dirname, `../temp/`));
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname);
+  },
+});
+
+const upload = multer({ storage: storage });
 
 app.post('/', upload.single('file'), async function (req, res) {
   try {
     const fileName = req.file.originalname;
+    const filePath = path.join(__dirname, `../temp/${fileName}`);
 
     const formData = new FormData();
-    const filePath = `temp/${fileName}`;
 
-    const fileContent = await fs.readFileSync(filePath);
-    formData.append('file', fileContent);
+    const file = fs.createReadStream(filePath);
+    formData.append('file', file);
 
     const metadata = JSON.stringify({
       name: fileName,
@@ -27,19 +38,21 @@ app.post('/', upload.single('file'), async function (req, res) {
     });
     formData.append('pinataOptions', options);
 
+    const configs = {
+      maxBodyLength: 'Infinity',
+      headers: {
+        'Content-Type': `multipart/form-data; boundary=${formData._boundary}`,
+        Authorization: `Bearer ${pinataToken}`,
+      },
+    };
+
     const response = await axios.post(
       'https://api.pinata.cloud/pinning/pinFileToIPFS',
       formData,
-      {
-        maxBodyLength: 'Infinity',
-        headers: {
-          'Content-Type': `multipart/form-data; boundary=${formData._boundary}`,
-          Authorization: pinataToken,
-        },
-      },
+      configs,
     );
 
-    await fs.unlinkSync(filePath);
+    fs.unlinkSync(filePath);
 
     res.send(response.data.IpfsHash);
   } catch (e) {

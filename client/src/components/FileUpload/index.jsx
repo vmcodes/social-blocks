@@ -1,12 +1,10 @@
 import { Button, Image, useToast } from '@chakra-ui/react';
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import Placeholder from '../../assets/images/placeholder.png';
-const JWT = process.env.REACT_APP_JWT;
+import { fileUpload } from '../../services';
 
 export default function FileUpload({ setHash, hash }) {
-  const ipfsGateway = `https://gateway.pinata.cloud/ipfs/${hash}`;
   const [files, setFiles] = useState([]);
   const toast = useToast();
 
@@ -31,35 +29,19 @@ export default function FileUpload({ setHash, hash }) {
     return () => files.forEach((file) => URL.revokeObjectURL(file.preview));
   }, [files]);
 
+  const handleClear = () => {
+    setHash(null);
+    setFiles([]);
+  };
+
   const handleSave = async () => {
     const formData = new FormData();
 
     formData.append('file', files[0]);
 
-    const metadata = JSON.stringify({
-      name: files[0]?.name,
-    });
-
-    formData.append('pinataMetadata', metadata);
-
-    const options = JSON.stringify({
-      cidVersion: 0,
-    });
-
-    formData.append('pinataOptions', options);
-
-    const config = {
-      maxBodyLength: 'Infinity',
-      headers: {
-        'Content-Type': `multipart/form-data`,
-        authorization: `Bearer ${JWT}`,
-      },
-    };
-
-    await axios
-      .post('https://api.pinata.cloud/pinning/pinFileToIPFS', formData, config)
+    await fileUpload(formData)
       .then((res) => {
-        setHash(res.data.IpfsHash);
+        setHash(res);
         toast({
           title: 'Photo saved!',
           status: 'success',
@@ -81,7 +63,11 @@ export default function FileUpload({ setHash, hash }) {
   return (
     <section>
       <Image
-        src={hash ? ipfsGateway : files[0]?.preview}
+        src={
+          files[0]?.preview
+            ? files[0]?.preview
+            : `https://gateway.pinata.cloud/ipfs/${hash}`
+        }
         fallbackSrc={Placeholder}
         alt="photo"
         h="125px"
@@ -112,23 +98,44 @@ export default function FileUpload({ setHash, hash }) {
         </div>
       )}
 
-      {(files[0]?.preview || hash) && (
-        <Button
-          colorScheme="green"
-          bg={'green.400'}
-          _hover={{
-            bg: 'green.500',
-          }}
-          height="50px"
-          type="button"
-          onClick={handleSave}
-        >
-          Save Photo
-          <i
-            style={{ marginLeft: '12px' }}
-            className="fas fa-save right-12"
-          ></i>
-        </Button>
+      {files[0]?.preview && (
+        <>
+          <Button
+            mr="12px"
+            colorScheme="gray"
+            bg={'gray.400'}
+            _hover={{
+              bg: 'gray.500',
+            }}
+            height="50px"
+            type="button"
+            onClick={handleClear}
+          >
+            Clear
+            <i
+              style={{ marginLeft: '12px' }}
+              className="fas fa-save right-12"
+            ></i>
+          </Button>
+
+          <Button
+            ml="12px"
+            colorScheme="green"
+            bg={'green.400'}
+            _hover={{
+              bg: 'green.500',
+            }}
+            height="50px"
+            type="button"
+            onClick={handleSave}
+          >
+            Save
+            <i
+              style={{ marginLeft: '12px' }}
+              className="fas fa-save right-12"
+            ></i>
+          </Button>
+        </>
       )}
     </section>
   );
