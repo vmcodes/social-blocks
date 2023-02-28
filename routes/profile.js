@@ -64,14 +64,11 @@ app.patch('/', async function (req, res) {
 
     const profile = await Profile.find({ username: request.username });
 
-    if (
-      request.username.includes(profile?.username) &&
-      !request.address.includes(profile?.address)
-    ) {
+    if (!profile?.address.includes(request.address)) {
       return res.sendStatus(403);
     }
 
-    if (request.address.includes(verified)) {
+    if (verified === request.address) {
       await Profile.updateOne({ ...request });
 
       return res.sendStatus(201);
