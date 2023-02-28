@@ -29,7 +29,7 @@ export default function FileUpload({ setHash, hash }) {
     return () => files.forEach((file) => URL.revokeObjectURL(file.preview));
   }, [files]);
 
-  const handleClear = () => {
+  const handleCancel = () => {
     setHash(null);
     setFiles([]);
   };
@@ -42,6 +42,7 @@ export default function FileUpload({ setHash, hash }) {
     await fileUpload(formData)
       .then((res) => {
         setHash(res);
+        setFiles([]);
         toast({
           title: 'Photo saved!',
           status: 'success',
@@ -50,6 +51,7 @@ export default function FileUpload({ setHash, hash }) {
         });
       })
       .catch((err) => {
+        setFiles([]);
         console.log(err);
         toast({
           title: 'Upload error!',
@@ -77,7 +79,7 @@ export default function FileUpload({ setHash, hash }) {
         marginBottom="24px"
       />
 
-      {!files[0]?.preview && !hash && (
+      {!files[0]?.preview && (
         <div {...getRootProps()}>
           <input {...getInputProps()} />
           <Button
@@ -109,12 +111,12 @@ export default function FileUpload({ setHash, hash }) {
             }}
             height="50px"
             type="button"
-            onClick={handleClear}
+            onClick={handleCancel}
           >
-            Clear
+            Cancel
             <i
               style={{ marginLeft: '12px' }}
-              className="fas fa-save right-12"
+              className="fas fa-close right-12"
             ></i>
           </Button>
 

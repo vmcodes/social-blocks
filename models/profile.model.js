@@ -16,7 +16,7 @@ module.exports = (mongoose) => {
         youtube: String,
         instagram: String,
         facebook: String,
-        qrcode: String,
+        qrcode: { type: String, default: 'https://socialblocks.io' },
       },
       { timestamps: true },
     ),
