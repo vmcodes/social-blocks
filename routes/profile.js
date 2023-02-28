@@ -71,7 +71,7 @@ app.patch('/', async function (req, res) {
       return res.sendStatus(403);
     }
 
-    if (verified === request.address) {
+    if (request.address.includes(verified)) {
       await Profile.updateOne({ ...request });
 
       return res.sendStatus(201);
