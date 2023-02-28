@@ -43,11 +43,17 @@ export default function Login() {
       await createProfile(ctx.currentConnected.userDid);
 
       await login(dispatch, ctx.currentConnected.userDid);
+
+      window.location.assign(`/account/${ctx.currentConnected.userDid}`);
     } catch (e) {
       console.log(e);
+      toast({
+        title: 'Login error!',
+        status: 'error',
+        duration: 2000,
+        isClosable: true,
+      });
     }
-
-    window.location.assign(`/account/${ctx.currentConnected.userDid}`);
   };
 
   const getAccount = async () => {

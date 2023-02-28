@@ -12,6 +12,7 @@ import {
   VStack,
   InputGroup,
   InputLeftAddon,
+  useToast,
 } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
@@ -23,6 +24,7 @@ import FileUpload from '../components/FileUpload';
 import { slugify } from '../utils';
 
 export default function Account() {
+  const toast = useToast();
   const [profile, setProfile] = useState(null);
   const [hash, setHash] = useState(null);
   const dispatch = useAuthDispatch();
@@ -65,8 +67,14 @@ export default function Account() {
         await logout(dispatch);
 
         window.location.assign(`/${profile.slug}`);
-      } catch {
-        console.log('user does not exist');
+      } catch (e) {
+        console.log(e);
+        toast({
+          title: 'Username exists!',
+          status: 'error',
+          duration: 2000,
+          isClosable: true,
+        });
       }
     }
   };

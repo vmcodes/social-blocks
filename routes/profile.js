@@ -62,13 +62,19 @@ app.patch('/', async function (req, res) {
     const verified = await verifyToken(req);
     const request = req.body;
 
+    const profile = await Profile.findOne({ address: request.address });
+
+    if (profile?.username === request.username) {
+      return res.sendStatus(403);
+    }
+
     if (verified === request.address) {
       await Profile.updateOne({ ...request });
 
       return res.sendStatus(201);
     }
 
-    return res.sendStatus(403);
+    return res.sendStatus(401);
   } catch (e) {
     console.log(e);
     return res.sendStatus(500);
