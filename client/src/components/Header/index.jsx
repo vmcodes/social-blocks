@@ -1,4 +1,10 @@
-import { Button, Image, useColorMode } from '@chakra-ui/react';
+import {
+  Box,
+  Button,
+  Image,
+  useColorMode,
+  useColorModeValue,
+} from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 import Logo from '../../assets/images/logo.png';
 
@@ -7,7 +13,7 @@ export default function Header() {
   const { colorMode, toggleColorMode } = useColorMode();
 
   return (
-    <>
+    <Box h="80px" bg={useColorModeValue('gray.50', 'gray.800')}>
       <Button
         as={Link}
         to="/"
@@ -28,7 +34,7 @@ export default function Header() {
           bg: 'green.500',
         }}
         position="absolute"
-        right={'30px'}
+        right={'25px'}
         top="15px"
         borderRadius="50px"
         boxShadow="3xl"
@@ -41,6 +47,6 @@ export default function Header() {
           <i className="fa-solid fa-moon"></i>
         )}
       </Button>
-    </>
+    </Box>
   );
 }

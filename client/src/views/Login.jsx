@@ -93,6 +93,7 @@ export default function Login() {
           boxShadow={'lg'}
           p={6}
           my={12}
+          transform="translateY(-50%)"
         >
           <Heading
             lineHeight={1.1}
@@ -124,7 +125,7 @@ export default function Login() {
               justifyContent="space-between"
               onClick={() => setOpen(true)}
             >
-              <span>Connect With DID</span>
+              <span>Connect DID</span>
               <img
                 src={ArcBlock}
                 alt="DID Wallet"
@@ -152,7 +153,7 @@ export default function Login() {
               justifyContent="space-between"
               onClick={getAccount}
             >
-              <span>Connect With MetaMask</span>
+              <span>Connect MetaMask</span>
               <img
                 src={MetaMask}
                 alt="MetaMask"
