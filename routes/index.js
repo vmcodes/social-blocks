@@ -14,4 +14,8 @@ app.get('/account', function (req, res, next) {
   res.sendFile('build/index.html', { root: '.' });
 });
 
+app.get('/:slug', function (req, res, next) {
+  res.sendFile('build/index.html', { root: '.' });
+});
+
 module.exports = app;
