@@ -1,16 +1,17 @@
-import * as express from 'express';
+const express = require('express');
 const app = express.Router();
 const axios = require('axios');
 const fs = require('fs');
+const path = require('path');
 const multer = require('multer');
-const upload = multer({ dest: `/temp` });
+const upload = multer({ dest: path.join(__dirname, `../temp`) });
 const pinataToken = process.env.PINATA_JWT ? process.env.PINATA_JWT : '';
 
-app.post('/', upload.single('file'), async function (req: any, res) {
+app.post('/', upload.single('file'), async function (req, res) {
   try {
     const fileName = req.file.originalname;
 
-    const formData = new FormData() as any;
+    const formData = new FormData();
     const filePath = `temp/${fileName}`;
 
     const fileContent = await fs.readFileSync(filePath);

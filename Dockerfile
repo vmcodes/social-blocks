@@ -1,5 +1,5 @@
 # Use a lighter version of Node as a parent image
-FROM node:18
+FROM node:18-slim
 
 # A directory within the virtualized Docker environment
 WORKDIR /server
@@ -12,9 +12,6 @@ RUN yarn install
  
 # Copies everything over to Docker environment
 COPY . .
-
-# Build the app
-RUN yarn run build
 
 # Finally runs the application
 CMD [ "yarn", "start" ]

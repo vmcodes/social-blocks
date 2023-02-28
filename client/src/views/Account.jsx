@@ -63,7 +63,7 @@ export default function Account() {
 
         await logout(dispatch);
 
-        window.location.assign(`/${profile.username}`);
+        window.location.assign(`/${profile.slug}`);
       } catch {
         console.log('user does not exist');
       }
@@ -120,12 +120,13 @@ export default function Account() {
                     setProfile((prevState) => ({
                       ...prevState,
                       username: e.target.value,
+                      slug: slugify(e.target.value),
                     }))
                   }
                 />
               </FormControl>
 
-              <FormControl isReadOnly id="slug">
+              <FormControl id="slug">
                 <FormLabel>
                   <i className="fas fa-link right-12"></i> Link
                 </FormLabel>
@@ -133,12 +134,11 @@ export default function Account() {
                 <InputGroup>
                   <InputLeftAddon children="socialblocks.io/" />
                   <Input
+                    readOnly
                     type="text"
                     placeholder="Link"
-                    defaultValue={
-                      profile?.username && slugify(profile.username)
-                    }
-                    value={profile?.username && slugify(profile.username)}
+                    defaultValue={profile?.slug}
+                    value={profile?.slug}
                   />
                 </InputGroup>
               </FormControl>

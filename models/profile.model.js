@@ -4,9 +4,9 @@ module.exports = (mongoose) => {
     mongoose.Schema(
       {
         address: { type: String, required: true, unique: true },
-        username: { type: String },
-        slug: { type: String },
-        bio: { type: String },
+        username: String,
+        slug: String,
+        bio: String,
         ipfsHash: String,
         location: String,
         email: String,

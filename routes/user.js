@@ -1,5 +1,5 @@
-import * as express from 'express';
-import { getToken } from '../utils';
+const express = require('express');
+const { getToken } = require('../utils');
 const model = require('../models');
 const User = model.user;
 const app = express.Router();

@@ -7,10 +7,9 @@
   "scripts": {
     "dev:install": "cd client && yarn",
     "dev:client": "cd client && yarn start",
-    "prod:build": "tsc && cd client && yarn build",
-    "start": "node dist/index.js",
-    "build": "tsc",
-    "clean": "rm -rf dist && rm -rf build",
+    "start": "node index.js",
+    "clean": "rm -rf build",
+    "build": "cd client && yarn build",
     "bundle": "blocklet bundle --zip --create-release",
     "deploy": "blocklet deploy .blocklet/bundle"
   },
@@ -30,8 +29,6 @@
     "reflect-metadata": "^0.1.13"
   },
   "devDependencies": {
-    "@types/express": "^4.17.16",
-    "prettier": "^2.8.3",
-    "typescript": "^4.9.4"
+    "prettier": "^2.8.3"
   }
 }

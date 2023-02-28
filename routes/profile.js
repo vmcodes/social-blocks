@@ -1,5 +1,5 @@
-import * as express from 'express';
-import { verifyToken } from '../utils';
+const express = require('express');
+const { verifyToken } = require('../utils');
 const model = require('../models');
 const Profile = model.profile;
 const app = express.Router();
@@ -19,11 +19,11 @@ app.post('/', async function (req, res) {
 });
 
 // get profile
-app.get('/:username', async function (req, res) {
+app.get('/:slug', async function (req, res) {
   try {
-    const request = req.params['username'];
+    const request = req.params['slug'];
 
-    const profile = await Profile.findOne({ username: request });
+    const profile = await Profile.findOne({ slug: request });
 
     return res.json(profile);
   } catch (e) {

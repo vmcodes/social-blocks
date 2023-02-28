@@ -7,11 +7,11 @@ import Placeholder from '../assets/images/placeholder.png';
 import { useParams } from 'react-router-dom';
 
 export default function Profile() {
-  const { username } = useParams();
+  const { slug } = useParams();
   const [profile, setProfile] = useState(null);
 
   const fetchProfile = async () => {
-    await getProfile(username)
+    await getProfile(slug)
       .then((response) => {
         if (response?.address) {
           setProfile(response);
@@ -25,11 +25,11 @@ export default function Profile() {
   };
 
   useEffect(() => {
-    if (profile === null && username) {
+    if (profile === null && slug) {
       fetchProfile();
     }
     // eslint-disable-next-line
-  }, [profile, username]);
+  }, [profile, slug]);
 
   return (
     <>

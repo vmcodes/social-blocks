@@ -1,4 +1,4 @@
-import * as express from 'express';
+const express = require('express');
 const db = require('./models');
 const cors = require('cors');
 const indexRouter = require('./routes/index');

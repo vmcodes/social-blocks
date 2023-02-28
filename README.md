@@ -20,7 +20,7 @@
 docker compose up -d
 ```
 
-- Start Frontend
+- Start frontend
 
 ```shell
 yarn dev:install
