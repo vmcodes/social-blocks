@@ -46,14 +46,15 @@ export default function Profile() {
               width={{ base: '80%', md: '50%', lg: '30%' }}
               flexDirection="column"
               marginTop="24px"
+              textAlign="center"
             >
               {profile?.ipfsHash && (
                 <Image
                   src={`https://gateway.pinata.cloud/ipfs/${profile.ipfsHash}`}
                   fallbackSrc={Placeholder}
                   alt="photo"
-                  h="125px"
-                  w="125px"
+                  h="145px"
+                  w="145px"
                   borderRadius="50%"
                   margin="auto"
                   marginBottom="24px"

@@ -84,12 +84,8 @@ export default function Login() {
       <Helmet>
         <title>Login | Social Blocks</title>
       </Helmet>
-      <Flex
-        minH={'100vh'}
-        align={'center'}
-        justify={'center'}
-        bg={useColorModeValue('gray.50', 'gray.800')}
-      >
+
+      <Flex h="100%" minH={'100vh'} align={'center'} justify={'center'}>
         <Stack
           spacing={4}
           w={'full'}
@@ -172,24 +168,24 @@ export default function Login() {
             </Button>
           </Stack>
         </Stack>
-      </Flex>
 
-      <WrappedConnect
-        popup
-        open={open}
-        onlyConnect
-        messages={{
-          title: 'Connect DID Wallet',
-          scan: 'You will always see the app connection screen on DID Wallet when scan follow qrcode',
-          confirm: 'Confirm operation on your DID Wallet',
-          success: 'You have successfully connected!',
-        }}
-        onClose={handleClose}
-        onConnect={handleConnect}
-        onApprove={handleApprove}
-        onComplete={handleComplete}
-        relayUrl="/.well-known/service/api/connect/relay"
-      />
+        <WrappedConnect
+          popup
+          open={open}
+          onlyConnect
+          messages={{
+            title: 'Connect DID Wallet',
+            scan: 'You will always see the app connection screen on DID Wallet when scan follow qrcode',
+            confirm: 'Confirm operation on your DID Wallet',
+            success: 'You have successfully connected!',
+          }}
+          onClose={handleClose}
+          onConnect={handleConnect}
+          onApprove={handleApprove}
+          onComplete={handleComplete}
+          relayUrl="/.well-known/service/api/connect/relay"
+        />
+      </Flex>
     </>
   );
 }

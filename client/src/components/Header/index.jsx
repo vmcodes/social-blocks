@@ -13,7 +13,7 @@ export default function Header() {
   const { colorMode, toggleColorMode } = useColorMode();
 
   return (
-    <Box h="80px" bg={useColorModeValue('gray.50', 'gray.800')}>
+    <Box h="80px" bg={useColorModeValue('gray.50', 'gray.800')} top={0}>
       <Button
         as={Link}
         to="/"

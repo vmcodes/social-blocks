@@ -3,10 +3,9 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { ChakraProvider } from '@chakra-ui/react';
 import theme from './theme/theme';
 import './assets/css/styles.css';
-import Header from './components/Header';
 import { useAuthState } from './contexts';
-import Footer from './components/Footer';
 import BackToTop from './components/BackToTop/BackToTop';
+import Layout from './layout';
 const Home = lazy(() => import('./views/Home'));
 const Profile = lazy(() => import('./views/Profile'));
 const Login = lazy(() => import('./views/Login'));
@@ -19,23 +18,22 @@ function App() {
     <ChakraProvider theme={theme}>
       <Suspense fallback={<></>}>
         <BrowserRouter>
-          <Header />
+          <Layout>
+            <Routes>
+              <Route path="/" element={<Home />} exact />
 
-          <Routes>
-            <Route path="/" element={<Home />} exact />
+              <Route path="/login" element={<Login />} exact />
 
-            <Route path="/login" element={<Login />} exact />
+              {user.authenticated && (
+                <Route path="/account/:address" element={<Account />} />
+              )}
 
-            {user.authenticated && (
-              <Route path="/account/:address" element={<Account />} />
-            )}
+              <Route path="/:slug" element={<Profile />} />
 
-            <Route path="/:slug" element={<Profile />} />
+              <Route path="*" element={<Navigate to="/" replace />} />
+            </Routes>
+          </Layout>
 
-            <Route path="*" element={<Navigate to="/" replace />} />
-          </Routes>
-
-          <Footer />
           <BackToTop />
         </BrowserRouter>
       </Suspense>

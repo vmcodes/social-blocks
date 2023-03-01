@@ -4,9 +4,9 @@ import Features from '../components/Features';
 
 export default function Home() {
   return (
-    <Box minH="120vh">
+    <>
       <Hero />
       <Features />
-    </Box>
+    </>
   );
 }

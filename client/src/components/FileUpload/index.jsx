@@ -72,8 +72,8 @@ export default function FileUpload({ setHash, hash }) {
         }
         fallbackSrc={Placeholder}
         alt="photo"
-        h="125px"
-        w="125px"
+        h="145px"
+        w="145px"
         borderRadius="50%"
         margin="auto"
         marginBottom="24px"
