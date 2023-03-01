@@ -1,6 +1,6 @@
 {
   "name": "social-blocks",
-  "version": "2.0.5",
+  "version": "3.0.0",
   "private": true,
   "dependencies": {
     "@chakra-ui/react": "^2.5.1",
