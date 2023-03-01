@@ -1,4 +1,4 @@
-import { Button, Image, useToast } from '@chakra-ui/react';
+import { Button, Image, Stack, useToast } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import Placeholder from '../../assets/images/placeholder.png';
@@ -83,15 +83,21 @@ export default function FileUpload({ setHash, hash }) {
         <div {...getRootProps()}>
           <input {...getInputProps()} />
           <Button
-            colorScheme="green"
+            height="50px"
+            rounded={'full'}
+            px={12}
+            fontSize="xl"
+            border="transparent"
+            cursor="pointer"
+            colorScheme={'green'}
             bg={'green.400'}
             _hover={{
               bg: 'green.500',
             }}
-            height="50px"
             type="button"
+            w="200px"
           >
-            Add A Photo{' '}
+            Add Photo
             <i
               style={{ marginLeft: '12px' }}
               className="fas fa-camera right-12"
@@ -101,16 +107,26 @@ export default function FileUpload({ setHash, hash }) {
       )}
 
       {files[0]?.preview && (
-        <>
+        <Stack
+          direction={{ base: 'column', md: 'row' }}
+          justifyContent="space-around"
+        >
           <Button
             mr="12px"
-            colorScheme="gray"
+            mb="12px"
+            height="50px"
+            rounded={'full'}
+            px={12}
+            fontSize="xl"
+            border="transparent"
+            cursor="pointer"
+            colorScheme={'gray'}
             bg={'gray.400'}
             _hover={{
               bg: 'gray.500',
             }}
-            height="50px"
             type="button"
+            w="200px"
             onClick={handleCancel}
           >
             Cancel
@@ -122,13 +138,20 @@ export default function FileUpload({ setHash, hash }) {
 
           <Button
             ml="12px"
-            colorScheme="green"
+            mb="12px"
+            height="50px"
+            rounded={'full'}
+            px={12}
+            fontSize="xl"
+            border="transparent"
+            cursor="pointer"
+            colorScheme={'green'}
             bg={'green.400'}
             _hover={{
               bg: 'green.500',
             }}
-            height="50px"
             type="button"
+            w="200px"
             onClick={handleSave}
           >
             Save
@@ -137,7 +160,7 @@ export default function FileUpload({ setHash, hash }) {
               className="fas fa-save right-12"
             ></i>
           </Button>
-        </>
+        </Stack>
       )}
     </section>
   );

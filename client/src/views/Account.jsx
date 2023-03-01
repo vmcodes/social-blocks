@@ -335,12 +335,14 @@ export default function Account() {
               <Stack spacing={10} pt={2}>
                 <Button
                   loadingText="Submitting"
+                  height="50px"
+                  rounded={'full'}
+                  px={12}
+                  fontSize="xl"
+                  border="transparent"
+                  cursor="pointer"
                   colorScheme={'green'}
                   bg={'green.400'}
-                  rounded={'full'}
-                  px={6}
-                  textDecoration="none"
-                  fontSize="xl"
                   _hover={{
                     bg: 'green.500',
                   }}

@@ -60,16 +60,16 @@ export default function Profile() {
                 />
               )}
 
-              <Heading>{profile?.name && profile.name}</Heading>
+              <Heading>{profile?.username && profile.username}</Heading>
 
               {profile?.location && (
-                <Text mt="12px" fontWeight="bold">
+                <Text mt="12px" fontWeight="bold" fontSize="lg">
                   <i className="fas fa-map-marker right-12" />{' '}
                   {profile.location}
                 </Text>
               )}
 
-              <Text my="12px" fontWeight="bold">
+              <Text my="12px" fontWeight="bold" fontSize="lg">
                 {profile?.bio && profile.bio}
               </Text>
 
