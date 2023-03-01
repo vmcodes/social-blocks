@@ -37,6 +37,6 @@ requirements:
   nodejs: '>=18.0.0'
 capabilities:
   clusterMode: false
-  component: false
+  component: true
 screenshots: []
 components: []

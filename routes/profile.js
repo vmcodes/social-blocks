@@ -7,11 +7,16 @@ const app = express.Router();
 // get account
 app.post('/', async function (req, res) {
   try {
+    const verified = await verifyToken(req);
     const request = req.body;
 
     const profile = await Profile.findOne({ address: request.address });
 
-    return res.json(profile);
+    if (verified === request.address) {
+      return res.json(profile);
+    }
+
+    return res.sendStatus(401);
   } catch (e) {
     console.log(e);
     return res.sendStatus(500);
@@ -62,9 +67,9 @@ app.patch('/', async function (req, res) {
     const verified = await verifyToken(req);
     const request = req.body;
 
-    const profile = await Profile.find({ username: request.username });
+    const username = await Profile.find({ username: request.username });
 
-    if (!profile?.address.includes(request.address)) {
+    if (username[0] && username[0].address !== request.address) {
       return res.sendStatus(403);
     }
 

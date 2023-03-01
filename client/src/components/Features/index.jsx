@@ -48,10 +48,15 @@ export default function Features() {
           </Text>
           <Heading>Decentralized Social Links</Heading>
           <Text color={'gray.500'} fontSize={'lg'}>
-            Share your content while knowing that no one is selling your data
-            and personal information.
+            Our decentralized social links allow you to share your content,
+            while knowing that your data and personal information is not being
+            sold.
+          </Text>
+          <Text color={'gray.500'} fontSize={'lg'}>
+            Keep you and your audience safe from third parties.
           </Text>
           <Stack
+            py="12px"
             spacing={4}
             divider={
               <StackDivider
@@ -60,23 +65,23 @@ export default function Features() {
             }
           >
             <Feature
-              icon={<i className="fas fa-chart-line"></i>}
+              icon={<i className="fas fa-lock"></i>}
               iconBg={useColorModeValue('yellow.100', 'yellow.900')}
-              text={'Strategy'}
+              text={'Private'}
             />
             <Feature
-              icon={<i className="fas fa-dollar-sign"></i>}
+              icon={<i className="fas fa-shield"></i>}
               iconBg={useColorModeValue('green.100', 'green.900')}
-              text={'Monetization'}
+              text={'Secure'}
             />
             <Feature
-              icon={<i className="fas fa-search-dollar"></i>}
+              icon={<i className="fas fa-fingerprint"></i>}
               iconBg={useColorModeValue('purple.100', 'purple.900')}
-              text={'Analysis'}
+              text={'Decentralized'}
             />
           </Stack>
         </Stack>
-        <Flex>
+        <Flex pb="64px">
           <Image
             shadow="2xl"
             rounded={'xl'}

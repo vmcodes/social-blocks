@@ -23,7 +23,7 @@ export const socialUpload = axios.create({
 });
 
 export const loginUser = async (address) => {
-  return (await socialApi.post(`/user`, { address: address })).data;
+  return (await socialApi.put(`/user`, { address: address })).data;
 };
 
 export const getAccount = async (address) => {
@@ -44,4 +44,8 @@ export const updateProfile = async (profile) => {
 
 export const fileUpload = async (upload) => {
   return (await socialUpload.post('/upload', upload)).data;
+};
+
+export const deleteUser = async (address) => {
+  return (await socialApi.post(`/user`, { address: address })).data;
 };
