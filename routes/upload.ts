@@ -1,4 +1,4 @@
-const express = require('express');
+import * as express from 'express';
 const app = express.Router();
 const axios = require('axios');
 const fs = require('fs');
@@ -18,7 +18,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-app.post('/', upload.single('file'), async function (req, res) {
+app.post('/', upload.single('file'), async function (req: any, res) {
   try {
     const fileName = req.file.originalname;
     const filePath = path.join(__dirname, `../temp/${fileName}`);

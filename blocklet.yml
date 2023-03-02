@@ -3,7 +3,7 @@ title: Social Blocks
 description: Decentralized Social Links
 version: 3.0.0
 group: dapp
-main: index.js
+main: ./dist/index.js
 author:
   name: vmcodes
 scripts:
@@ -12,6 +12,8 @@ specVersion: 1.2.7
 files:
   - blocklet.md
   - build
+  - dist
+  - .env
 logo: logo.png
 interfaces:
   - type: web

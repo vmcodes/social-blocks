@@ -1,11 +1,16 @@
+const generateRandomNumber = (length = 7) =>
+  Math.random().toString(10).substring(2, length);
+
+const randomUser = `user${generateRandomNumber()}`;
+
 module.exports = (mongoose) => {
   const Profile = mongoose.model(
     'Profile',
     mongoose.Schema(
       {
         address: { type: String, required: true, unique: true },
-        username: String,
-        slug: String,
+        username: { type: String, default: randomUser },
+        slug: { type: String, default: randomUser },
         bio: String,
         ipfsHash: String,
         location: String,

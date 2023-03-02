@@ -1,12 +1,11 @@
-const express = require('express');
+import * as express from 'express';
 const { getToken } = require('../utils');
 const model = require('../models');
 const User = model.user;
-const Profile = model.profile;
 const app = express.Router();
 
 // login user
-app.put('/', async function (req, res) {
+app.post('/login', async function (req, res) {
   try {
     const request = req.body;
 
@@ -27,22 +26,6 @@ app.put('/', async function (req, res) {
     const tokens = await getToken(request.address);
 
     return res.send(tokens);
-  } catch (e) {
-    console.log(e);
-    return res.sendStatus(500);
-  }
-});
-
-// delete user
-app.post('/', async function (req, res) {
-  try {
-    const request = req.body;
-
-    await User.deleteOne({ address: request.address });
-
-    await Profile.deleteOne({ address: request.address });
-
-    return res.sendStatus(204);
   } catch (e) {
     console.log(e);
     return res.sendStatus(500);

@@ -32,7 +32,7 @@
   },
   "scripts": {
     "start": "craco start",
-    "build": "GENERATE_SOURCEMAP=false craco build",
+    "build": "craco build",
     "postbuild": "mv build ../",
     "test": "craco test",
     "eject": "react-scripts eject"

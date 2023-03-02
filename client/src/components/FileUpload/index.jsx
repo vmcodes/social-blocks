@@ -1,8 +1,10 @@
 import { Button, Image, Stack, useToast } from '@chakra-ui/react';
+import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import Placeholder from '../../assets/images/placeholder.png';
-import { fileUpload } from '../../services';
+const PINATA_JWT =
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mb3JtYXRpb24iOnsiaWQiOiIyZmJlNTZiYS0xODU4LTRjZGUtYTVmOC02MzQyNzI4ZjczNWQiLCJlbWFpbCI6ImNvZGVjcmF3bGVyc0Bwcm90b25tYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJwaW5fcG9saWN5Ijp7InJlZ2lvbnMiOlt7ImlkIjoiTllDMSIsImRlc2lyZWRSZXBsaWNhdGlvbkNvdW50IjoxfV0sInZlcnNpb24iOjF9LCJtZmFfZW5hYmxlZCI6ZmFsc2UsInN0YXR1cyI6IkFDVElWRSJ9LCJhdXRoZW50aWNhdGlvblR5cGUiOiJzY29wZWRLZXkiLCJzY29wZWRLZXlLZXkiOiJjMDY1OGI2NWIzMGI0OWEyOGY1MCIsInNjb3BlZEtleVNlY3JldCI6ImI1YjYxNDYwYmJiNTFkMmQwNTE0ZTQwM2Y3Mzg4MzYwZDM0N2I2ZTQ5MjYwNmVkNmRjNzNmYzU1Y2RjODQzZTEiLCJpYXQiOjE2Nzc3NzQzNjR9.t7h_JcYkNHfkui-u7Wy13ZhOO6fkJ4fF54g0uGvrtCk';
 
 export default function FileUpload({ setHash, hash }) {
   const [files, setFiles] = useState([]);
@@ -39,9 +41,30 @@ export default function FileUpload({ setHash, hash }) {
 
     formData.append('file', files[0]);
 
-    await fileUpload(formData)
+    const metadata = JSON.stringify({
+      name: files[0]?.name,
+    });
+
+    formData.append('pinataMetadata', metadata);
+
+    const options = JSON.stringify({
+      cidVersion: 0,
+    });
+
+    formData.append('pinataOptions', options);
+
+    const config = {
+      maxBodyLength: 'Infinity',
+      headers: {
+        'Content-Type': `multipart/form-data`,
+        authorization: `Bearer ${PINATA_JWT}`,
+      },
+    };
+
+    await axios
+      .post('https://api.pinata.cloud/pinning/pinFileToIPFS', formData, config)
       .then((res) => {
-        setHash(res);
+        setHash(res.data.IpfsHash);
         setFiles([]);
         toast({
           title: 'Photo saved!',
@@ -51,8 +74,8 @@ export default function FileUpload({ setHash, hash }) {
         });
       })
       .catch((err) => {
-        setFiles([]);
         console.log(err);
+        setFiles([]);
         toast({
           title: 'Upload error!',
           status: 'error',

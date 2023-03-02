@@ -13,15 +13,11 @@ export default function Profile() {
   const fetchProfile = async () => {
     await getProfile(slug)
       .then((response) => {
-        if (response?.address) {
+        if (response?.slug === slug) {
           setProfile(response);
-        } else {
-          window.location.assign('/');
         }
       })
-      .catch(() => {
-        window.location.assign('/');
-      });
+      .catch(() => {});
   };
 
   useEffect(() => {
@@ -39,7 +35,7 @@ export default function Profile() {
         </title>
       </Helmet>
 
-      {profile?.address && (
+      {profile?.slug === slug && (
         <>
           <VStack minH="120vh">
             <Center
