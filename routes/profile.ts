@@ -11,7 +11,7 @@ app.get('/:slug', async function (req, res) {
 
     const profile = await Profile.findOne(
       { slug: request },
-      { address: 0, _id: 0, createdAt: 0, updatedAt: 0, __v: 0 },
+      { _id: 0, address: 0, createdAt: 0, updatedAt: 0, __v: 0 },
     );
 
     return res.json(profile);
@@ -51,7 +51,10 @@ app.post('/', async function (req, res) {
     const verified = await verifyToken(req);
     const request = req.body;
 
-    const profile = await Profile.findOne({ address: request.address });
+    const profile = await Profile.findOne(
+      { address: request.address },
+      { _id: 0, createdAt: 0, updatedAt: 0, __v: 0 },
+    );
 
     if (verified === request.address) {
       return res.json(profile);
@@ -70,14 +73,19 @@ app.patch('/', async function (req, res) {
     const verified = await verifyToken(req);
     const request = req.body;
 
-    const username = await Profile.find({ username: request.username });
+    const slug = await Profile.find({ slug: request.slug });
 
-    if (username[0] && username[0].address !== request.address) {
+    if (slug[0] && slug[0].address !== request.address) {
       return res.sendStatus(403);
     }
 
     if (verified === request.address) {
-      await Profile.updateOne({ _id: username._id, ...request });
+      await Profile.updateOne(
+        { address: verified },
+        {
+          ...request,
+        },
+      );
 
       return res.sendStatus(201);
     }

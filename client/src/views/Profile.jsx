@@ -15,14 +15,21 @@ export default function Profile() {
       .then((response) => {
         if (response?.slug === slug) {
           setProfile(response);
+        } else {
+          setProfile(false);
         }
       })
-      .catch(() => {});
+      .catch((e) => {
+        setProfile(false);
+        console.log(e);
+      });
   };
 
   useEffect(() => {
     if (profile === null && slug) {
       fetchProfile();
+    } else if (profile === false && slug) {
+      window.location.assign('/');
     }
     // eslint-disable-next-line
   }, [profile, slug]);
@@ -46,7 +53,7 @@ export default function Profile() {
             >
               {profile?.ipfsHash && (
                 <Image
-                  src={`https://gateway.pinata.cloud/ipfs/${profile.ipfsHash}`}
+                  src={`https://cloudflare-ipfs.com/ipfs/${profile.ipfsHash}`}
                   fallbackSrc={Placeholder}
                   alt="photo"
                   h="145px"

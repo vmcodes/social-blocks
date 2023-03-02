@@ -91,7 +91,7 @@ export default function FileUpload({ setHash, hash }) {
         src={
           files[0]?.preview
             ? files[0]?.preview
-            : `https://gateway.pinata.cloud/ipfs/${hash}`
+            : `https://cloudflare-ipfs.com/ipfs/${hash}`
         }
         fallbackSrc={Placeholder}
         alt="photo"
