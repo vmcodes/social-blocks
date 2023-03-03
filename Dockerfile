@@ -11,7 +11,7 @@ COPY package.json ./
 COPY yarn.lock ./
 
 # Installs all node packages
-RUN yarn install
+RUN yarn install/node_modules
  
 # Copies everything over to Docker environment
 COPY . .
