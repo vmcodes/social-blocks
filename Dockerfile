@@ -13,5 +13,8 @@ RUN yarn install
 # Copies everything over to Docker environment
 COPY . .
 
+# Installs all node packages
+RUN yarn build
+
 # Finally runs the application
 CMD [ "yarn", "start" ]
