@@ -1,5 +1,6 @@
 node_modules
 build
+client
 .blocket
 .blocket-server
 .env

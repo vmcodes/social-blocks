@@ -6,10 +6,11 @@
   "description": "Decentralized Social Links",
   "scripts": {
     "dev:install": "cd client && yarn",
-    "dev:client": "cd client && yarn start",
+    "dev:start": "cd client && yarn start",
+    "dev:build": "cd client && yarn build",
     "start": "node dist/index.js",
     "clean": "rm -rf build && rm -rf dist",
-    "build": "tsc && cd client && yarn build",
+    "build": "tsc",
     "bundle": "blocklet bundle --zip --create-release",
     "deploy": "blocklet deploy .blocklet/bundle"
   },
