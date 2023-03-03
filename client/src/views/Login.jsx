@@ -95,7 +95,6 @@ export default function Login() {
           boxShadow={'lg'}
           p={6}
           my={12}
-          transform="translateY(-50%)"
         >
           <Heading
             lineHeight={1.1}
@@ -112,6 +111,12 @@ export default function Login() {
           </Text>
 
           <Stack spacing={6} pt="12px">
+            <Text
+              fontSize={{ base: 'sm', sm: 'md' }}
+              color={useColorModeValue('black', 'white')}
+            >
+              Desktop:
+            </Text>
             <Button
               height="50px"
               rounded={'full'}
@@ -165,6 +170,34 @@ export default function Login() {
                   borderRadius: '50%',
                 }}
               />
+            </Button>
+          </Stack>
+
+          <Text
+            pt="12px"
+            fontSize={{ base: 'sm', sm: 'md' }}
+            color={useColorModeValue('black', 'white')}
+          >
+            Mobile:
+          </Text>
+
+          <Stack spacing={6} pt="12px">
+            <Button
+              height="50px"
+              rounded={'full'}
+              px={12}
+              fontSize="xl"
+              border="transparent"
+              cursor="pointer"
+              colorScheme={'green'}
+              bg={'green.400'}
+              _hover={{
+                bg: 'green.500',
+              }}
+              justifyContent="space-between"
+              type="button"
+            >
+              <span>Coming Soon...</span>
             </Button>
           </Stack>
         </Stack>
