@@ -7,6 +7,9 @@ WORKDIR /server
 # Copies package.json
 COPY package.json ./
 
+# Copies yarn.lock
+COPY yarn.lock ./
+
 # Installs all node packages
 RUN yarn install
  
