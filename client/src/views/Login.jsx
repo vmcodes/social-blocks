@@ -85,7 +85,7 @@ export default function Login() {
         <title>Login | Social Blocks</title>
       </Helmet>
 
-      <Flex h="100%" minH={'100vh'} align={'center'} justify={'center'}>
+      <Flex h="100%" align={'center'} justify={'center'}>
         <Stack
           spacing={4}
           w={'full'}
@@ -94,7 +94,7 @@ export default function Login() {
           rounded={'xl'}
           boxShadow={'lg'}
           p={6}
-          my={12}
+          my={'24px'}
         >
           <Heading
             lineHeight={1.1}

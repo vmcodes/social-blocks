@@ -22,13 +22,35 @@ export default function Hero() {
             Social Blocks!
           </Text>
         </Heading>
+
         <Stack
-          direction={'column'}
+          direction={{ base: 'column', md: 'row' }}
           spacing={3}
           align={'center'}
           alignSelf={'center'}
           position={'relative'}
         >
+          <Button
+            as={'a'}
+            target="_blank"
+            href="https://github.com/vmcodes/social-blocks"
+            height="50px"
+            color="white"
+            colorScheme={'blackAlpha'}
+            bg={'blackAlpha.800'}
+            rounded={'full'}
+            px={6}
+            textDecoration="none"
+            fontSize="xl"
+            _hover={{
+              bg: 'blackAlpha.900',
+            }}
+            w="200px"
+          >
+            GitHub
+            <i style={{ marginLeft: '12px' }} className="fab fa-github"></i>
+          </Button>
+
           <Button
             as={Link}
             to="/login"
