@@ -33,22 +33,22 @@ export default function Hero() {
           <Button
             as={'a'}
             target="_blank"
-            href="https://github.com/vmcodes/social-blocks"
+            href="https://store.socialblocks.io"
             height="50px"
             color="white"
             colorScheme={'blackAlpha'}
-            bg={'blackAlpha.800'}
+            bg={'blackAlpha.700'}
             rounded={'full'}
             px={6}
             textDecoration="none"
             fontSize="xl"
             _hover={{
-              bg: 'blackAlpha.900',
+              bg: 'blackAlpha.800',
             }}
             w="200px"
           >
-            GitHub
-            <i style={{ marginLeft: '12px' }} className="fab fa-github"></i>
+            Store
+            <i style={{ marginLeft: '12px' }} className="fas fa-shop"></i>
           </Button>
 
           <Button
