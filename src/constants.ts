@@ -18,3 +18,11 @@ export const MUMBAI_KEY = process.env.MUMBAI_KEY;
 export const GOERLI_KEY = process.env.GOERLI_KEY;
 
 export const ETHERSCAN_KEY = process.env.ETHERSCAN_KEY;
+
+export const PRIVATE_KEY = process.env.PRIVATE_KEY;
+
+export const SEPOLIA_RPC = process.env.SEPOLIA_RPC;
+
+export const MUMBAI_RPC = process.env.MUMBAI_RPC;
+
+export const GOERLI_RPC = process.env.GOERLI_RPC;

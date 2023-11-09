@@ -1,6 +1,6 @@
-import { IsString, Length } from 'class-validator';
+import { IsOptional, IsString, Length } from 'class-validator';
 
-type Network = 'sepolia' | 'matic-mumbai';
+type Network = 'sepolia' | 'matic-mumbai' | 'optimism-goerli';
 
 export class Transactions {
   @Length(42)
@@ -19,4 +19,7 @@ export class Payment {
 
   @IsString()
   network: Network;
+
+  @IsOptional()
+  contract?: string;
 }

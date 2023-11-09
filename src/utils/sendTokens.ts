@@ -35,7 +35,7 @@ export async function sendTokens(
     const transaction = {
       to: _receiverAddress,
       value: Utils.parseEther(_ethAmount),
-      gasLimit: '21000',
+      gasLimit: '100000',
       maxPriorityFeePerGas: Utils.parseUnits('5', 'gwei'),
       maxFeePerGas: Utils.parseUnits('20', 'gwei'),
       nonce: await alchemy.core.getTransactionCount(wallet.getAddress()),
@@ -46,6 +46,8 @@ export async function sendTokens(
     const rawTransaction = await wallet.signTransaction(transaction);
     const sendTransaction =
       await alchemy.transact.sendTransaction(rawTransaction);
+
+    await alchemy.transact.waitForTransaction(sendTransaction.hash, 1);
 
     return sendTransaction.hash;
   } catch (e) {

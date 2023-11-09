@@ -2,7 +2,7 @@ import {
   Body,
   Controller,
   Get,
-  Put,
+  Post,
   Query,
   Req,
   UseGuards,
@@ -26,8 +26,18 @@ export class TransactionController {
     return await this.transactionService.getBalance(params);
   }
 
-  @Put('tokens')
+  @Post('gas')
+  async estimateGasCost(@Req() req: Request, @Body() payment: Payment) {
+    return await this.transactionService.estimateGasCost(req, payment);
+  }
+
+  @Post('tokens')
   async transferTokens(@Req() req: Request, @Body() payment: Payment) {
     return await this.transactionService.transferTokens(req, payment);
+  }
+
+  @Post('erc20')
+  async transferERC20(@Req() req: Request, @Body() payment: Payment) {
+    return await this.transactionService.transferERC20(req, payment);
   }
 }

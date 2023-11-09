@@ -1,4 +1,3 @@
-import { InternalServerErrorException } from '@nestjs/common';
 import { GOERLI_KEY, MUMBAI_KEY, SEPOLIA_KEY } from '../constants';
 import { Network } from 'alchemy-sdk';
 
@@ -20,7 +19,7 @@ export const networkFilter = (network: string) => {
       NETWORK = Network.OPT_GOERLI;
       break;
     default:
-      throw new InternalServerErrorException();
+      break;
   }
 
   const settings = {

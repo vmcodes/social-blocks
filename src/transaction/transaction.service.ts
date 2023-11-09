@@ -10,8 +10,11 @@ import { Payment } from './classes';
 import { InjectModel } from '@nestjs/mongoose';
 import { User } from '../user/models';
 import { Model, Types } from 'mongoose';
+import { estimateGas } from '../utils/estimateGas';
 import { jwtPayload } from 'jwt-payloader';
 import { networkFilter } from '../utils/networkFilter';
+import { sendERC20 } from '../utils/sendERC20';
+import { rpcFilter } from '../utils/rpcFilter';
 
 @Injectable()
 export class TransactionService {
@@ -23,7 +26,7 @@ export class TransactionService {
 
       const alchemy = new Alchemy(settings);
 
-      const { EXTERNAL, ERC20, ERC721, ERC1155 } = AssetTransfersCategory;
+      const { EXTERNAL, ERC721, ERC1155 } = AssetTransfersCategory;
 
       const { DESCENDING } = SortingOrder;
 
@@ -31,17 +34,19 @@ export class TransactionService {
         return await alchemy.core.getAssetTransfers({
           toAddress: params.address,
           excludeZeroValue: true,
-          category: [EXTERNAL, ERC20, ERC721, ERC1155],
+          category: [EXTERNAL, ERC721, ERC1155],
           order: DESCENDING,
           maxCount: 50,
+          withMetadata: true,
         });
       } else if (params.type === 'outgoing') {
         return await alchemy.core.getAssetTransfers({
           fromAddress: params.address,
           excludeZeroValue: true,
-          category: [EXTERNAL, ERC20, ERC721, ERC1155],
+          category: [EXTERNAL, ERC721, ERC1155],
           order: DESCENDING,
           maxCount: 50,
+          withMetadata: true,
         });
       }
 
@@ -67,6 +72,28 @@ export class TransactionService {
     }
   }
 
+  async estimateGasCost(req: Request, payment: Payment) {
+    try {
+      const payload = await jwtPayload(req);
+
+      const sender = await this.userModel
+        .findById(new Types.ObjectId(payload.sub))
+        .exec();
+
+      const settings = networkFilter(payment.network);
+
+      return await estimateGas(
+        sender.address,
+        payment.receiver,
+        payment.amount,
+        settings,
+      );
+    } catch (e) {
+      console.log(e);
+      throw new InternalServerErrorException();
+    }
+  }
+
   async transferTokens(req: Request, payment: Payment) {
     try {
       const payload = await jwtPayload(req);
@@ -82,6 +109,29 @@ export class TransactionService {
         payment.receiver,
         payment.amount,
         settings,
+      );
+    } catch (e) {
+      console.log(e);
+      throw new InternalServerErrorException();
+    }
+  }
+
+  async transferERC20(req: Request, payment: Payment) {
+    try {
+      const payload = await jwtPayload(req);
+
+      const sender = await this.userModel
+        .findById(new Types.ObjectId(payload.sub))
+        .exec();
+
+      const network = rpcFilter(payment.network);
+
+      return await sendERC20(
+        sender.account,
+        payment.receiver,
+        payment.contract,
+        payment.amount,
+        network,
       );
     } catch (e) {
       console.log(e);

@@ -8,6 +8,7 @@ import { User } from '../user/models';
 import { Model, Types } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { jwtPayload } from 'jwt-payloader';
+import { rpcFilter } from '../utils/rpcFilter';
 
 @Injectable()
 export class NFTService {
@@ -56,13 +57,15 @@ export class NFTService {
         .findById(new Types.ObjectId(payload.sub))
         .exec();
 
+      const network = rpcFilter(nft.network);
+
       if (nft.tokenType === 'ERC1155') {
         return await sendERC1155(
           sender.account,
           nft.receiver,
           nft.contract,
           nft.token,
-          nft.network,
+          network,
         );
       } else if (nft.tokenType === 'ERC721') {
         return await sendERC721(
@@ -70,7 +73,7 @@ export class NFTService {
           nft.receiver,
           nft.contract,
           nft.token,
-          nft.network,
+          network,
         );
       }
 
